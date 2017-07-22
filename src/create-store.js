@@ -13,7 +13,7 @@ export default ({
   })
 
   const store = {
-    state: vm.$data.$$state,
+    state: vm.$$state,
     commit(type, ...payload) {
       const mutation = mutations[type]
       middlewares && middlewares.forEach(m => m(store, type, ...payload))
