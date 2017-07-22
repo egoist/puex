@@ -27,11 +27,12 @@ const store = createStore({
 - store.state
 - store.mutations
 - store.actions
-- store.commit(type, ...payload)
-- store.dispatch(type, ...payload)
+- store.commit(type, payload)
+- store.dispatch(type, payload)
 - store.mapState(states)
 - store.mapMutations(mutations)
 - store.mapActions(actions)
+- store.subscribe(subscriber)
 
 ### mutation
 
@@ -57,6 +58,15 @@ const actions = {
 }
 
 store.dispatch('incrementAsync', 42)
+```
+
+### store.subscribe(subscriber)
+
+```js
+const unsubscribe = store.subscribe((mutation, state) => {
+  console.log(mutation.type)
+  console.log(mutation.payload)
+})
 ```
 
 ## Contributing

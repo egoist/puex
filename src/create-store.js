@@ -2,7 +2,7 @@ import Vue from 'vue'
 import { normalizeMap, resolveSource } from './utils'
 
 export default (
-  { state, mutations = {}, actions = {}, middlewares, plugins } = {}
+  { state, mutations = {}, actions = {}, plugins, subscribers = [] } = {}
 ) => {
   const vm = new Vue({
     data: {
@@ -14,14 +14,21 @@ export default (
     state: vm.$data.$$state,
     mutations,
     actions,
-    commit(type, ...payload) {
-      middlewares && middlewares.forEach(m => m(store, type, ...payload))
-      const mutation = resolveSource(mutations, type)
-      return mutation && mutation(store.state, ...payload)
+    subscribers,
+    subscribe: sub => {
+      store.subscribers.push(sub)
+      return () => store.subscribers.splice(store.subscribers.indexOf(sub), 1)
     },
-    dispatch(type, ...payload) {
+    commit(type, payload) {
+      for (const sub of store.subscribers) {
+        sub({ type, payload }, store.state)
+      }
+      const mutation = resolveSource(mutations, type)
+      return mutation && mutation(store.state, payload)
+    },
+    dispatch(type, payload) {
       const action = resolveSource(actions, type)
-      return Promise.resolve(action && action(store, ...payload))
+      return Promise.resolve(action && action(store, payload))
     },
     use: fn => fn(store)
   }
@@ -41,9 +48,9 @@ export default (
   const mapToMethods = (source, run) => map => {
     const res = {}
     for (const { k, v } of normalizeMap(map)) {
-      res[k] = function(...args) {
+      res[k] = function(payload) {
         const actualSource = typeof v === 'function' ? v.call(this, source) : v
-        return run(actualSource, ...args)
+        return run(actualSource, payload)
       }
     }
     return res
