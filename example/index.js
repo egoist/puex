@@ -7,8 +7,14 @@ const store = createStore({
   },
   mutations: {
     INC(state) {
-      console.log(state)
       state.count++
+    }
+  },
+  actions: {
+    incAsync({ commit }) {
+      setTimeout(() => {
+        commit('INC')
+      }, 300)
     }
   },
   middlewares: [
@@ -20,9 +26,19 @@ const store = createStore({
 
 new Vue({
   el: '#app',
+  computed: {
+    ...store.mapState(['count']),
+    ...store.mapState({
+      countDouble: state => state.count * 2
+    })
+  },
+  methods: {
+    ...store.mapMutations(['INC']),
+    ...store.mapActions(['incAsync'])
+  },
   render() {
-    return <button onClick={() => store.commit('INC')}>
-      {store.state.count}
+    return <button onClick={this.incAsync}>
+      {this.count}:{this.countDouble}
     </button>
   }
 })

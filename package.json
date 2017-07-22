@@ -65,7 +65,7 @@
     "xo": "^0.18.0"
   },
   "xo": {
-    "extends": "rem",
+    "extends": "rem/prettier",
     "envs": [
       "jest"
     ],

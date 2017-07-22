@@ -25,6 +25,9 @@ const store = createStore({
 - store.state
 - store.commit(type, ...payload)
 - store.dispatch(type, ...payload)
+- store.mapState(states)
+- store.mapMutations(mutations)
+- store.mapActions(actions)
 
 ### mutation
 
