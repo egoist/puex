@@ -21,7 +21,7 @@ export default ({
     },
     dispatch(type, ...payload) {
       const action = actions[type]
-      return action && Promise.resolve(action(store, ...payload))
+      return Promise.resolve(action && action(store, ...payload))
     }
   }
 
