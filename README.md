@@ -8,6 +8,8 @@
 yarn add puex
 ```
 
+CDN: [UNPKG](https://unpkg.com/puex/dist/) | [jsDelivr](https://cdn.jsdelivr.net/npm/puex/dist/)
+
 ## Usage
 
 ```js
