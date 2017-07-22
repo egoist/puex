@@ -1,6 +1,6 @@
 {
   "name": "puex",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "1kb Vuex alternative.",
   "repository": {
     "url": "egoist/puex",
