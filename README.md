@@ -18,7 +18,8 @@ import { createStore } from 'puex'
 const store = createStore({
   state: {},
   mutations: {},
-  actions: {}
+  actions: {},
+  plugins: []
 })
 ```
 
@@ -58,6 +59,20 @@ const actions = {
 }
 
 store.dispatch('incrementAsync', 42)
+```
+
+### plugin
+
+```js
+const loggerPlugin = store => {
+  store.subscribe(mutation => {
+    console.log(mutation)
+  })
+}
+
+createStore({
+  plugins: [loggerPlugin]
+})
 ```
 
 ### store.subscribe(subscriber)
