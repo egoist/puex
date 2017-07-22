@@ -23,6 +23,8 @@ const store = createStore({
 ### store
 
 - store.state
+- store.mutations
+- store.actions
 - store.commit(type, ...payload)
 - store.dispatch(type, ...payload)
 - store.mapState(states)
