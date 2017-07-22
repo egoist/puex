@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import { normalizeMap, resolveSource } from './utils'
 
-export default ({ state, mutations = {}, actions = {}, middlewares } = {}) => {
+export default (
+  { state, mutations = {}, actions = {}, middlewares, plugins } = {}
+) => {
   const vm = new Vue({
     data: {
       $$state: typeof state === 'function' ? state() : state
@@ -13,14 +15,15 @@ export default ({ state, mutations = {}, actions = {}, middlewares } = {}) => {
     mutations,
     actions,
     commit(type, ...payload) {
-      const mutation = resolveSource(mutations, type)
       middlewares && middlewares.forEach(m => m(store, type, ...payload))
+      const mutation = resolveSource(mutations, type)
       return mutation && mutation(store.state, ...payload)
     },
     dispatch(type, ...payload) {
       const action = resolveSource(actions, type)
       return Promise.resolve(action && action(store, ...payload))
-    }
+    },
+    use: fn => fn(store)
   }
 
   store.mapState = states => {
@@ -48,6 +51,8 @@ export default ({ state, mutations = {}, actions = {}, middlewares } = {}) => {
 
   store.mapMutations = mapToMethods(store.mutations, store.commit)
   store.mapActions = mapToMethods(store.actions, store.dispatch)
+
+  plugins && plugins.forEach(p => store.use(p))
 
   return store
 }
