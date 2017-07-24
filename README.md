@@ -2,6 +2,13 @@
 
 [![NPM version](https://img.shields.io/npm/v/puex.svg?style=flat)](https://npmjs.com/package/puex) [![NPM downloads](https://img.shields.io/npm/dm/puex.svg?style=flat)](https://npmjs.com/package/puex) [![CircleCI](https://circleci.com/gh/egoist/puex/tree/master.svg?style=shield&circle-token=af0131758916e976003f5e909a703fe6821d3124)](https://circleci.com/gh/egoist/puex/tree/master)  [![donate](https://img.shields.io/badge/$-donate-ff69b4.svg?maxAge=2592000&style=flat)](https://github.com/egoist/donate)
 
+## Features
+
+- Small size, the goal is to have a 1kB state management library.
+- Similar to Vuex
+  - Dropped unnecessary features (for specific use cases).
+  - Every developer that knows Vuex knows Puex already.
+
 ## Install
 
 ```bash
