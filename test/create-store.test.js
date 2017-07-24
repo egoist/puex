@@ -4,7 +4,7 @@ describe('createStore', () => {
   it('exposes public api', () => {
     const store = createStore()
     const props = Object.keys(store)
-    expect(props.length).toBe(11)
+    expect(props.length).toBe(12)
     expect(props).toContain('state')
     expect(props).toContain('commit')
     expect(props).toContain('dispatch')
@@ -16,5 +16,6 @@ describe('createStore', () => {
     expect(props).toContain('use')
     expect(props).toContain('subscribe')
     expect(props).toContain('subscribers')
+    expect(props).toContain('replaceState')
   })
 })
