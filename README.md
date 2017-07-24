@@ -23,6 +23,24 @@ const store = createStore({
 })
 ```
 
+### bindStore
+
+In order to access `store` in every component:
+
+```js
+import Vue from 'vue'
+import { bindStore } from 'puex'
+
+Vue.use(bindStore)
+
+// In your root Vue instance:
+new Vue({
+  store,
+  render: h => h(YourApp)
+})
+// this.$store will be available in component
+```
+
 ### store
 
 - store.state
