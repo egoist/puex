@@ -67,7 +67,7 @@ new Vue({
 
 *read only*
 
-`state` is nothing special, it can be either an object or a function that returns an object, you might need to use the latter while doing Vue SSR with `runInNewContext: false` option in order to get a fresh copy of initial states for each HTTP request.
+`state` is nothing special, it can be either an object or a function that returns an object.
 
 This is read-only, to replace root state you can use `store.replaceState(newState)` instead.
 
