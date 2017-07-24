@@ -16,7 +16,9 @@ export default (
     },
     set state(v) {
       if (process.env.NODE_ENV === 'development') {
-        throw new Error('[puex] store.state is read-only, use store.replaceState(state) instead')
+        throw new Error(
+          '[puex] store.state is read-only, use store.replaceState(state) instead'
+        )
       }
     },
     mutations,
