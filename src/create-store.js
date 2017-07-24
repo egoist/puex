@@ -11,7 +11,14 @@ export default (
   })
 
   const store = {
-    state: vm.$data.$$state,
+    get state() {
+      return vm.$data.$$state
+    },
+    set state(v) {
+      if (process.env.NODE_ENV === 'development') {
+        throw new Error('[puex] store.state is read-only, use store.replaceState(state) instead')
+      }
+    },
     mutations,
     actions,
     subscribers,
@@ -24,13 +31,16 @@ export default (
         sub({ type, payload }, store.state)
       }
       const mutation = resolveSource(mutations, type)
-      return mutation && mutation(store.state, payload)
+      return mutation && mutation(vm.$data.$$state, payload)
     },
     dispatch(type, payload) {
       const action = resolveSource(actions, type)
       return Promise.resolve(action && action(store, payload))
     },
-    use: fn => fn(store)
+    use: fn => fn(store),
+    replaceState(state) {
+      vm.$data.$$state = state
+    }
   }
 
   store.mapState = states => {

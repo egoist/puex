@@ -18,7 +18,10 @@
     "test": "jest && npm run lint",
     "lint": "xo",
     "prepublish": "npm run build",
-    "build": "bili --format cjs,es,umd,umdCompress --module-name puex --external vue",
+    "build": "npm run build:module && npm run build:browser:dev && npm run build:browser:prod",
+    "build:module": "bili --format cjs,es",
+    "build:browser:dev": "bili --format umd --module-name puex --external vue --env.NODE_ENV development",
+    "build:browser:prod": "bili --format umdCompress --module-name puex --external vue --env.NODE_ENV production",
     "example": "BABEL_ENV=example poi"
   },
   "author": "egoist <0x142857@gmail.com>",

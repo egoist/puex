@@ -61,10 +61,15 @@ new Vue({
 - store.mapMutations(mutations)
 - store.mapActions(actions)
 - store.subscribe(subscriber)
+- store.replaceState(newState)
 
 ### state
 
+*read only*
+
 `state` is nothing special, it can be either an object or a function that returns an object, you might need to use the latter while doing Vue SSR with `runInNewContext: false` option in order to get a fresh copy of initial states for each HTTP request.
+
+This is read-only, to replace root state you can use `store.replaceState(newState)` instead.
 
 ### mutation
 
@@ -77,6 +82,8 @@ const mutations = {
 
 store.commit('INCREMENT', 10)
 ```
+
+> **NOTE:** You can only mutate state inside a *mutation*.
 
 ### action
 
