@@ -41,6 +41,8 @@ new Vue({
 // this.$store will be available in component
 ```
 
+> **NOTE:** This is not necessary, you can always manually `import store from './path/to/store'` and use it in your component.
+
 ### store
 
 - store.state
