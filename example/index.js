@@ -1,7 +1,7 @@
 import Vue from 'vue'
-import { createStore } from '../src'
+import Puex from '../src'
 
-const store = createStore({
+const store = new Puex({
   state: {
     count: 0
   },
@@ -26,6 +26,7 @@ const store = createStore({
 
 new Vue({
   el: '#app',
+  store,
   computed: {
     ...store.mapState(['count']),
     ...store.mapState({

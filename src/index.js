@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import { resolveSource } from './utils'
+import { createMapState, mapToMethods } from './helpers'
 
 export default class Store {
   static install(Vue) {
@@ -26,6 +27,10 @@ export default class Store {
     if (plugins) {
       plugins.forEach(p => this.use(p))
     }
+
+    this.mapState = createMapState(this)
+    this.mapActions = mapToMethods('actions', 'dispatch', this)
+    this.mapMutations = mapToMethods('mutations', 'commit', this)
   }
 
   get state() {
@@ -55,7 +60,11 @@ export default class Store {
 
   dispatch(type, payload) {
     const action = resolveSource(this.actions, type)
-    return Promise.resolve(action && action(this, payload))
+    const ctx = {
+      dispatch: this.dispatch.bind(this),
+      commit: this.commit.bind(this)
+    }
+    return Promise.resolve(action && action(ctx, payload))
   }
 
   use(fn) {
@@ -68,3 +77,7 @@ export default class Store {
     return this
   }
 }
+
+export const mapState = createMapState()
+export const mapActions = mapToMethods('actions', 'dispatch')
+export const mapMutations = mapToMethods('mutations', 'commit')

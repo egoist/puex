@@ -61,8 +61,9 @@ new Vue({
 - store.dispatch(type, payload)
 - store.subscribe(subscriber)
 - store.replaceState(newState)
-
-> **NOTE**: Missing `mapState` `mapGetters` etc? You can still import { them } from 'vuex' if needed! Thanks to the tree-shaking feature from webpack and other similar tools.
+- store.mapState(map)
+- store.mapActions(map)
+- store.mapMutations(map)
 
 ### state
 
