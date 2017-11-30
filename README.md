@@ -20,9 +20,13 @@ CDN: [UNPKG](https://unpkg.com/puex/dist/) | [jsDelivr](https://cdn.jsdelivr.net
 ## Usage
 
 ```js
-import { createStore } from 'puex'
+// store.js
+import Vue from 'vue'
+import Puex from 'puex'
 
-const store = createStore({
+Vue.use(Puex)
+
+const store = new Puex({
   state: {},
   mutations: {},
   actions: {},
@@ -36,9 +40,7 @@ In order to access `store` in every component:
 
 ```js
 import Vue from 'vue'
-import { bindStore } from 'puex'
-
-Vue.use(bindStore)
+import store from './store'
 
 // In your root Vue instance:
 new Vue({
@@ -48,8 +50,6 @@ new Vue({
 // this.$store will be available in component
 ```
 
-> **NOTE:** This is not necessary, you can always manually `import store from './path/to/store'` and use it in your component.
-
 ### store
 
 - store.state
@@ -57,9 +57,6 @@ new Vue({
 - store.actions
 - store.commit(type, payload)
 - store.dispatch(type, payload)
-- store.mapState(states)
-- store.mapMutations(mutations)
-- store.mapActions(actions)
 - store.subscribe(subscriber)
 - store.replaceState(newState)
 
