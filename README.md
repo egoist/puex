@@ -19,6 +19,8 @@ CDN: [UNPKG](https://unpkg.com/puex/dist/) | [jsDelivr](https://cdn.jsdelivr.net
 
 ## Usage
 
+### Create store instance
+
 ```js
 // store.js
 import Vue from 'vue'
@@ -34,7 +36,7 @@ const store = new Puex({
 })
 ```
 
-### bindStore
+### Bind store instance
 
 In order to access `store` in every component:
 
@@ -59,6 +61,8 @@ new Vue({
 - store.dispatch(type, payload)
 - store.subscribe(subscriber)
 - store.replaceState(newState)
+
+> **NOTE**: Missing `mapState` `mapGetters` etc? You can still import { them } from 'vuex' if needed! Thanks to the tree-shaking feature from webpack and other similar tools.
 
 ### state
 
