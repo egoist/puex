@@ -110,7 +110,7 @@ const loggerPlugin = store => {
   })
 }
 
-createStore({
+new Puex({
   plugins: [loggerPlugin]
 })
 ```
