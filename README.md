@@ -54,7 +54,7 @@ new Vue({
 
 ### store
 
-- store.state
+- store.state `readonly`
 - store.mutations
 - store.actions
 - store.commit(type, payload)
@@ -65,15 +65,19 @@ new Vue({
 - store.mapActions(map)
 - store.mapMutations(map)
 
-### state
+## API
 
-*read only*
+### Constructor
 
-`state` is nothing special, it can be either an object or a function that returns an object.
+```js
+const store = new Puex({ state, mutations, actions })
+```
 
-This is read-only, to replace root state you can use `store.replaceState(newState)` instead.
+#### state
 
-### mutation
+`state` is nothing special, it can be either an object or a function that returns an object, then you can access it via `store.state` which will be read-only, to replace root state you can use `store.replaceState(newState)` instead.
+
+#### mutations
 
 ```js
 const mutations = {
@@ -87,7 +91,7 @@ store.commit('INCREMENT', 10)
 
 > **NOTE:** You can only mutate state inside a *mutation*.
 
-### action
+#### actions
 
 ```js
 const actions = {
@@ -101,7 +105,7 @@ const actions = {
 store.dispatch('incrementAsync', 42)
 ```
 
-### plugin
+#### plugins
 
 ```js
 const loggerPlugin = store => {
@@ -123,6 +127,10 @@ const unsubscribe = store.subscribe((mutation, state) => {
   console.log(mutation.payload)
 })
 ```
+
+### store.replaceState(newState)
+
+Replace root state.
 
 ## Contributing
 
