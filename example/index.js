@@ -26,7 +26,6 @@ const store = new Puex({
 
 new Vue({
   el: '#app',
-  store,
   computed: {
     ...store.mapState(['count']),
     ...store.mapState({
