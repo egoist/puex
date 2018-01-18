@@ -6,9 +6,9 @@
     "url": "egoist/puex",
     "type": "git"
   },
-  "main": "dist/puex.common.js",
-  "module": "dist/puex.es.js",
-  "jsnext:main": "dist/puex.es.js",
+  "main": "dist/puex.cjs.js",
+  "module": "dist/puex.m.js",
+  "jsnext:main": "dist/puex.m.js",
   "cdn": "dist/puex.min.js",
   "unpkg": "dist/puex.min.js",
   "files": [
@@ -18,10 +18,7 @@
     "test": "jest && npm run lint",
     "lint": "xo",
     "prepublish": "npm run build",
-    "build": "npm run build:module && npm run build:browser:dev && npm run build:browser:prod",
-    "build:module": "bili --format cjs,es",
-    "build:browser:dev": "bili --format umd --module-name puex --external vue --env.NODE_ENV development",
-    "build:browser:prod": "bili --format umdCompress --module-name puex --external vue --env.NODE_ENV production",
+    "build": "bili --format es,cjs,umd,umd-min --module-name puex --global.vue Vue",
     "example": "BABEL_ENV=example poi"
   },
   "author": "egoist <0x142857@gmail.com>",
@@ -61,7 +58,7 @@
   },
   "devDependencies": {
     "babel-preset-env": "^1.4.0",
-    "bili": "^0.17.0",
+    "bili": "^1.6.3",
     "eslint-config-rem": "^3.0.0",
     "jest-cli": "^19.0.0",
     "poi": "^9.1.3",
