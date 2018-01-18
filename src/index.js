@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import { resolveSource } from './utils'
 import { createMapState, mapToMethods } from './helpers'
+import devtoolPlugin from './devtoolPlugin'
 
 export default class Store {
   static install(Vue) {
@@ -28,6 +29,11 @@ export default class Store {
       plugins.forEach(p => this.use(p))
     }
 
+    if (Vue.config.devtools) {
+      this.getters = [] // hack for vue-devtools
+      devtoolPlugin(this)
+    }
+
     this.mapState = createMapState(this)
     this.mapActions = mapToMethods('actions', 'dispatch', this)
     this.mapMutations = mapToMethods('mutations', 'commit', this)
@@ -51,11 +57,11 @@ export default class Store {
   }
 
   commit(type, payload) {
+    const mutation = resolveSource(this.mutations, type)
+    mutation && mutation(this.state, payload)
     for (const sub of this.subscribers) {
       sub({ type, payload }, this.state)
     }
-    const mutation = resolveSource(this.mutations, type)
-    return mutation && mutation(this.state, payload)
   }
 
   dispatch(type, payload) {
