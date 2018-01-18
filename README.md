@@ -8,6 +8,7 @@
 - Similar to Vuex
   - Dropped unnecessary features (for specific use cases).
   - Every developer that knows Vuex knows Puex already.
+- `vue-devtools`: It just works™.
 
 ## Install
 
