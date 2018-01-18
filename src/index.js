@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import { resolveSource } from './utils'
 import { createMapState, mapToMethods } from './helpers'
-import devtoolPlugin from './devtoolPlugin'
+import devtoolPlugin from './devtool-plugin'
 
 export default class Store {
   static install(Vue) {

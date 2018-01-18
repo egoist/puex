@@ -67,7 +67,8 @@
   "xo": {
     "extends": "rem/prettier",
     "envs": [
-      "jest"
+      "jest",
+      "browser"
     ],
     "ignores": [
       "example/**"
