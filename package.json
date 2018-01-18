@@ -18,13 +18,25 @@
     "test": "jest && npm run lint",
     "lint": "xo",
     "prepublish": "npm run build",
-    "build": "bili --format es,cjs,umd,umd-min --module-name puex --global.vue Vue",
+    "build": "bili",
     "example": "BABEL_ENV=example poi"
   },
   "author": "egoist <0x142857@gmail.com>",
   "license": "MIT",
   "jest": {
     "testEnvironment": "node"
+  },
+  "bili": {
+    "format": ["es", "cjs", "umd", "umd-min"],
+    "moduleName": "puex",
+    "global": {
+      "vue": "Vue"
+    },
+    "buble": {
+      "transforms": {
+        "dangerousForOf": true
+      }
+    }
   },
   "babel": {
     "env": {
