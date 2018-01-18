@@ -1,6 +1,6 @@
 {
   "name": "puex",
-  "version": "0.5.1",
+  "version": "0.5.2",
   "description": "1kb Vuex alternative.",
   "repository": {
     "url": "egoist/puex",
@@ -27,7 +27,12 @@
     "testEnvironment": "node"
   },
   "bili": {
-    "format": ["es", "cjs", "umd", "umd-min"],
+    "format": [
+      "es",
+      "cjs",
+      "umd",
+      "umd-min"
+    ],
     "moduleName": "puex",
     "global": {
       "vue": "Vue"
