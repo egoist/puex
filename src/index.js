@@ -13,9 +13,13 @@ export default class Store {
     })
   }
 
-  constructor(
-    { state, mutations = {}, actions = {}, plugins, subscribers = [] } = {}
-  ) {
+  constructor({
+    state,
+    mutations = {},
+    actions = {},
+    plugins,
+    subscribers = []
+  } = {}) {
     this.vm = new Vue({
       data: {
         $$state: typeof state === 'function' ? state() : state
