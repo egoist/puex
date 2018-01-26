@@ -7,8 +7,8 @@
     "type": "git"
   },
   "main": "dist/puex.cjs.js",
-  "module": "dist/puex.m.js",
-  "jsnext:main": "dist/puex.m.js",
+  "module": "dist/puex.es.js",
+  "jsnext:main": "dist/puex.es.js",
   "cdn": "dist/puex.min.js",
   "unpkg": "dist/puex.min.js",
   "files": [
@@ -41,7 +41,8 @@
       "transforms": {
         "dangerousForOf": true
       }
-    }
+    },
+    "exports": "named"
   },
   "babel": {
     "env": {
@@ -75,7 +76,7 @@
   },
   "devDependencies": {
     "babel-preset-env": "^1.4.0",
-    "bili": "^1.6.3",
+    "bili": "^2.2.3",
     "eslint-config-rem": "^3.0.0",
     "jest-cli": "^19.0.0",
     "poi": "^9.1.3",
